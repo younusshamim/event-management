@@ -2,7 +2,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import { format } from "date-fns";
-import SearchInput from "../../components/SearchInput";
+import Input from "../../components/Input";
 
 const FilterOptions = ({ searchFields, selectedRange, setSelectedRange }) => {
   const startDate = selectedRange[0].startDate;
@@ -14,7 +14,7 @@ const FilterOptions = ({ searchFields, selectedRange, setSelectedRange }) => {
     <div className="flex gap-5 my-10">
       {/* search fields  */}
       {searchFields.map((props, index) => (
-        <SearchInput key={index} className="" {...props} />
+        <Input key={index} type="search" {...props} />
       ))}
 
       {/* date range picker  */}
