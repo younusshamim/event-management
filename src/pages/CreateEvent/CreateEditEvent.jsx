@@ -54,7 +54,9 @@ const CreateEditEvent = () => {
       </div>
 
       <div className="my-10 flex justify-end">
-        <PrimaryBtn className="w-52">Create Event</PrimaryBtn>
+        <PrimaryBtn className="w-52" type="submit">
+          Create Event
+        </PrimaryBtn>
       </div>
     </form>
   );

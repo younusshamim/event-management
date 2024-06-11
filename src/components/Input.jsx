@@ -2,6 +2,7 @@ import cn from "../utils/class-names";
 
 const Input = ({
   type = "text",
+  size,
   label,
   error,
   className,
@@ -12,7 +13,7 @@ const Input = ({
   ...rest
 }) => {
   return (
-    <label className={cn("form-control w-full", className)}>
+    <label className={cn("form-control", className)}>
       <div className={cn("label", labelClassName)}>
         <span className="label-text">{label}</span>
       </div>
@@ -20,7 +21,8 @@ const Input = ({
       <label
         className={cn(
           "input input-bordered flex items-center gap-2 h-10",
-          inputWrapClassName
+          inputWrapClassName,
+          { "h-12": size === "lg" }
         )}
       >
         <input
