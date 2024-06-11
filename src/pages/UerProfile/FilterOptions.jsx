@@ -17,18 +17,16 @@ const FilterOptions = ({ searchFields, selectedRange, setSelectedRange }) => {
         <Input key={index} type="search" {...props} />
       ))}
 
-      {/* date range picker  */}
-      {/* <Popover>
-        <Popover.Trigger>
-          <Input
-            label="Select Date"
-            placeholder="Select Date Range"
-            value={`${formatStartDate}-${formatEndDate}`}
-            onChange={() => {}}
-          />
-        </Popover.Trigger>
+      <Input
+        label="Select Date"
+        placeholder="Select Date Range"
+        value={`${formatStartDate}-${formatEndDate}`}
+        onChange={() => {}}
+        onClick={() => document.getElementById("date_range_picker").showModal()}
+      />
 
-        <Popover.Content>
+      <dialog id="date_range_picker" className="modal">
+        <div className="modal-box min-w-fit">
           <DateRangePicker
             onChange={(item) => setSelectedRange([item.selection])}
             showSelectionPreview={true}
@@ -37,8 +35,12 @@ const FilterOptions = ({ searchFields, selectedRange, setSelectedRange }) => {
             ranges={selectedRange}
             direction="horizontal"
           />
-        </Popover.Content>
-      </Popover> */}
+        </div>
+
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
     </div>
   );
 };
