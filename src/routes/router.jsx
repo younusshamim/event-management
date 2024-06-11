@@ -4,11 +4,16 @@ import UerProfile from "../pages/UerProfile/UerProfile";
 import CreateEvents from "../pages/CreateEvent/CreateEvents";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
     children: [
       { path: "/", element: <UerProfile /> },
       { path: "/create-event", element: <CreateEvents /> },

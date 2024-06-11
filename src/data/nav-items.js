@@ -9,11 +9,6 @@ const navItems = [
     link: "/create-event",
     // icon:,
   },
-  {
-    name: "Logout",
-    link: "",
-    // icon:,
-  },
 ];
 
 export default navItems;

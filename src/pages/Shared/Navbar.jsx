@@ -20,6 +20,14 @@ const Navbar = () => {
           </div>
         </Link>
       ))}
+
+      <div
+        className={
+          "font-semibold cursor-pointer hover:text-primary active:text-gray-700"
+        }
+      >
+        <p>Logout</p>
+      </div>
     </div>
   );
 };

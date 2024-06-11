@@ -40,11 +40,11 @@ const EventDetailsModal = ({ isOpen, setIsOpen, event }) => {
         <hr className="my-5" />
 
         <div>
-          <p className="mb-1 uppercase text-[12px] font-semibold">
+          <p className="mb-2 uppercase text-[12px] font-semibold">
             Peoples who join the event
           </p>
 
-          <div className="flex flex-col gap-1">
+          <div className="grid grid-cols-2  gap-2">
             <div className="flex gap-1 items-center">
               <Avatar name="John Doe" initials="J" size="sm" />
               <p>John Doe</p>
