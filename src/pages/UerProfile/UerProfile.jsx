@@ -3,8 +3,16 @@ import Events from "./Events";
 import FilterOptions from "./FilterOptions";
 import Pagination from "../../components/Pagination";
 import { addDays } from "date-fns";
+import { useEventListQuery } from "../../services/eventApi";
+import PageLoader from "../../components/PageLoader";
+import ErrorMsg from "../../components/ErrorMsg";
+import { useDebounce } from "use-debounce";
 
 const UerProfile = () => {
+  // pagination
+  const [currPage, setCurrPage] = useState(0);
+  const [size, setSize] = useState(10);
+
   // filter options
   const [searchTitle, setSearchTitle] = useState("");
   const [searchLocation, setSearchLocation] = useState("");
@@ -17,9 +25,25 @@ const UerProfile = () => {
   ]);
   const { startDate, endDate } = selectedRange[0];
 
+  // debouncing
+  const [debouncedTitle] = useDebounce(searchTitle, 400);
+  const [debouncedLocation] = useDebounce(searchLocation, 400);
+
+  // query
+  const { data, error, isLoading } = useEventListQuery({
+    title: debouncedTitle,
+    location: debouncedLocation,
+    start: startDate,
+    end: endDate,
+    page: currPage,
+    size,
+  });
+
   // pagination
-  const [currPage, setCurrPage] = useState(1);
-  const pages = Math.ceil(20 / 5);
+  const pages = Math.ceil(data?.count / size);
+
+  if (isLoading) return <PageLoader />;
+  if (error) return <ErrorMsg />;
 
   return (
     <>
@@ -42,7 +66,7 @@ const UerProfile = () => {
         setSelectedRange={setSelectedRange}
       />
 
-      <Events />
+      <Events events={data.events} />
 
       <Pagination pages={pages} currPage={currPage} setCurrPage={setCurrPage} />
     </>

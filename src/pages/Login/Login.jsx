@@ -25,7 +25,6 @@ const Login = () => {
       const payload = { email, password };
       const result = await login(payload).unwrap();
       dispatch(setUser(result));
-      toast.success("Login Successfully");
       navigate("/");
     } catch (err) {
       console.error(err);

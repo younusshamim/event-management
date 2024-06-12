@@ -1,12 +1,29 @@
 import { useState } from "react";
-import eventsData from "../../data/events-data";
 import EventCard from "./EventCard";
 import EventDetailsModal from "./EventDetailsModal";
+import { useCreateBookingMutation } from "../../services/bookingApi";
+import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
 
-const Events = () => {
+const Events = ({ events }) => {
   const [selectedEvent, setSelectedEvent] = useState();
+  // hooks
+  const [createBooking, { isLoading }] = useCreateBookingMutation();
+  const user = useSelector((state) => state.auth.user);
 
-  const handleJoin = () => {};
+  const handleJoin = async (event) => {
+    try {
+      const payload = {
+        userId: user._id,
+        eventId: event._id,
+      };
+      await createBooking(payload).unwrap();
+      toast.success("Join Successfully");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to Join");
+    }
+  };
 
   const handleViewDetails = (event) => {
     setSelectedEvent(event);
@@ -17,13 +34,13 @@ const Events = () => {
     <div className="flex flex-col gap-5">
       <EventDetailsModal event={selectedEvent} />
 
-      {eventsData.map((event, i) => {
+      {events.map((event, i) => {
         return (
           <EventCard
             event={event}
             key={event.title + i}
             handleViewDetails={() => handleViewDetails(event)}
-            handleJoin={handleJoin}
+            handleJoin={() => handleJoin(event)}
           />
         );
       })}

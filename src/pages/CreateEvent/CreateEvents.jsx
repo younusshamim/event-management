@@ -1,4 +1,4 @@
-import CreateEditEvent from "./CreateEditEvent";
+import CreateEditEvent from "../Shared/CreateEditEvent";
 
 const CreateEvents = () => {
   return (
