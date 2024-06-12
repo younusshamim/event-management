@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/",
+    baseUrl: "https://event-management-server-roan.vercel.app/",
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem("token");
       if (token) {
