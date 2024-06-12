@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import PrimaryBtn from "../../components/PrimaryBtn";
 import getEventDateTimeData from "../../utils/getEventDateTimeData";
 import cn from "../../utils/class-names";
-import ErrorMsg from "../../components/ErrorMsg";
 
 const EventCard = ({ event, handleViewDetails, handleJoin }) => {
   const user = useSelector((state) => state.auth.user);
@@ -10,6 +9,7 @@ const EventCard = ({ event, handleViewDetails, handleJoin }) => {
   const { startTime, endTime, meetingTime, day, month } = eventTimeData || {};
   const isConfirmed = event.bookedUsers.some((item) => item._id == user._id);
 
+  if (!eventTimeData && !event) return null;
   return (
     <div className="p-5 flex justify-between bg-white rounded-md hover:bg-primary-lighter  transition-all">
       <div className="flex gap-10 w-full">

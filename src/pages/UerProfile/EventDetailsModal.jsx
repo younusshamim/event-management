@@ -4,7 +4,6 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaRegClock, FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ErrorMsg from "../../components/ErrorMsg";
 
 const EventDetailsModal = ({ isOpen, setIsOpen, event }) => {
   const user = useSelector((state) => state.auth.user);
@@ -14,7 +13,7 @@ const EventDetailsModal = ({ isOpen, setIsOpen, event }) => {
 
   return (
     <dialog id="event_details_modal" className="modal">
-      {event && (
+      {event && eventTimeData && (
         <div className="modal-box  min-w-[600px] px-16 py-10">
           {event.userId == user._id && (
             <div className="flex justify-end text-xl text-primary relative ">
