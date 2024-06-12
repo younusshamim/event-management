@@ -11,14 +11,21 @@ const PrivateRoute = ({ children }) => {
   const [pageLoading, setPageLoading] = useState(true);
   const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
-  const { data, isLoading, error } = useIsSessionQuery(userId);
+  const { data, isLoading, error } = useIsSessionQuery(userId, {
+    skip: !userId,
+  });
 
   useEffect(() => {
     if (data) {
       dispatch(setUser(data));
-      setPageLoading(false);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setPageLoading(false);
+    }
+  }, [isLoading]);
 
   if (isLoading || pageLoading) {
     return <PageLoader />;
