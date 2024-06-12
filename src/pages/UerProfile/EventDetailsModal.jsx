@@ -4,12 +4,17 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaRegClock, FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import ErrorMsg from "../../components/ErrorMsg";
 
 const EventDetailsModal = ({ isOpen, setIsOpen, event }) => {
   const user = useSelector((state) => state.auth.user);
-  const formattedDateTime = getEventDateTimeData(event?.start, event?.end);
+  const eventTimeData = getEventDateTimeData(event?.start, event?.end);
 
-  const { startDate, endDate } = formattedDateTime || {};
+  if (!eventTimeData) {
+    return <ErrorMsg msg="Invalid event data" />;
+  }
+
+  const { startDate, endDate } = eventTimeData || {};
   const { title, description, location, bookedUsers } = event || {};
 
   return (

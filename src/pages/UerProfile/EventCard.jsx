@@ -1,17 +1,18 @@
 import { useSelector } from "react-redux";
 import PrimaryBtn from "../../components/PrimaryBtn";
 import getEventDateTimeData from "../../utils/getEventDateTimeData";
-import EventDetailsModal from "./EventDetailsModal";
 import cn from "../../utils/class-names";
+import ErrorMsg from "../../components/ErrorMsg";
 
 const EventCard = ({ event, handleViewDetails, handleJoin }) => {
   const user = useSelector((state) => state.auth.user);
+  const eventTimeData = getEventDateTimeData(event.start, event.end);
 
-  const { startTime, endTime, meetingTime, day, month } = getEventDateTimeData(
-    event.start,
-    event.end
-  );
+  if (!eventTimeData) {
+    return <ErrorMsg msg="Invalid event data" />;
+  }
 
+  const { startTime, endTime, meetingTime, day, month } = eventTimeData || {};
   const isConfirmed = event.bookedUsers.some((item) => item._id == user._id);
 
   return (

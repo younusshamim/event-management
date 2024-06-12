@@ -1,8 +1,9 @@
 import { format, formatDistance } from "date-fns";
 import { utcToLocal } from "./time";
+import { isValidDate } from "./date";
 
 const getEventDateTimeData = (start, end) => {
-  if (!start && !end) return;
+  if (!isValidDate(start) || !isValidDate(end)) return;
 
   const startDate = utcToLocal(start);
   const endDate = utcToLocal(end);
