@@ -20,8 +20,17 @@ const userApi = api.injectEndpoints({
         };
       },
     }),
+    isSession: build.query({
+      query(userId) {
+        return {
+          url: `/check-session/${userId}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useCreateUserMutation, useLoginMutation } = userApi;
+export const { useCreateUserMutation, useLoginMutation, useIsSessionQuery } =
+  userApi;

@@ -4,13 +4,18 @@ import navItems from "../../data/nav-items";
 import cn from "../../utils/class-names";
 import { useDispatch } from "react-redux";
 import { clearUser } from "../../store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(clearUser());
+    localStorage.setItem("token", "");
+    localStorage.setItem("userId", "");
+    navigate("/login");
   };
 
   return (

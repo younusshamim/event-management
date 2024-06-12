@@ -24,6 +24,8 @@ const Login = () => {
     try {
       const payload = { email, password };
       const result = await login(payload).unwrap();
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("userId", result.user._id);
       dispatch(setUser(result));
       navigate("/");
     } catch (err) {

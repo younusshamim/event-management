@@ -39,7 +39,7 @@ const eventApi = api.injectEndpoints({
     }),
   }),
 
-  overrideExisting: false,
+  // overrideExisting: false,
 });
 
 export const {
