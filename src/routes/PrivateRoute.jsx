@@ -31,7 +31,7 @@ const PrivateRoute = ({ children }) => {
     return <PageLoader />;
   }
   if (error) {
-    return <ErrorMsg />;
+    return <Navigate to="/login"></Navigate>;
   }
 
   if (data?.isSession) {
