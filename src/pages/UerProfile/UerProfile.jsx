@@ -30,7 +30,7 @@ const UerProfile = () => {
   const [debouncedLocation] = useDebounce(searchLocation, 400);
 
   // query
-  const { data, error, isLoading } = useEventListQuery({
+  const { data, error, isLoading, refetch } = useEventListQuery({
     title: debouncedTitle,
     location: debouncedLocation,
     start: startDate,
@@ -66,7 +66,7 @@ const UerProfile = () => {
         setSelectedRange={setSelectedRange}
       />
 
-      <Events events={data.events} />
+      <Events events={data.events} refetch={refetch} />
 
       <Pagination pages={pages} currPage={currPage} setCurrPage={setCurrPage} />
     </>

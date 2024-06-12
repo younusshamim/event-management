@@ -5,7 +5,7 @@ import { useCreateBookingMutation } from "../../services/bookingApi";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 
-const Events = ({ events }) => {
+const Events = ({ events, refetch }) => {
   const [selectedEvent, setSelectedEvent] = useState();
   // hooks
   const [createBooking, { isLoading }] = useCreateBookingMutation();
@@ -18,6 +18,7 @@ const Events = ({ events }) => {
         eventId: event._id,
       };
       await createBooking(payload).unwrap();
+      refetch();
       toast.success("Join Successfully");
     } catch (err) {
       console.error(err);
