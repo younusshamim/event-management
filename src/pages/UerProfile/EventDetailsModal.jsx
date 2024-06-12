@@ -9,11 +9,6 @@ import ErrorMsg from "../../components/ErrorMsg";
 const EventDetailsModal = ({ isOpen, setIsOpen, event }) => {
   const user = useSelector((state) => state.auth.user);
   const eventTimeData = getEventDateTimeData(event?.start, event?.end);
-
-  if (!eventTimeData) {
-    return <ErrorMsg msg="Invalid event data" />;
-  }
-
   const { startDate, endDate } = eventTimeData || {};
   const { title, description, location, bookedUsers } = event || {};
 
