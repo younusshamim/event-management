@@ -3,11 +3,7 @@ import { utcToLocal } from "./time";
 import { isValidDate } from "./date";
 
 const getEventDateTimeData = (start, end) => {
-  if (
-    !isValidDate(start) ||
-    !isValidDate(end) ||
-    start.getTime() === end.getTime()
-  )
+  if (!isValidDate(start) || !isValidDate(end))
     return {
       startDate: "",
       endDate: "",
