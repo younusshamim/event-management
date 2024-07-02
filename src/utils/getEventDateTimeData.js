@@ -16,8 +16,8 @@ const getEventDateTimeData = (start, end) => {
   } catch (error) {
     console.error("Error in getEventDateTimeData:", error);
     return {
-      startDate: null,
-      endDate: null,
+      startDate: "",
+      endDate: "",
       startTime: "",
       endTime: "",
       meetingTime: "",
