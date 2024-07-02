@@ -9,7 +9,6 @@ const EventCard = ({ event, handleViewDetails, handleJoin }) => {
   const { startTime, endTime, meetingTime, day, month } = eventTimeData || {};
   const isConfirmed = event.bookedUsers.some((item) => item._id == user._id);
 
-  if (!eventTimeData && !event) return null;
   return (
     <div className="p-5 flex justify-between bg-white rounded-md hover:bg-primary-lighter  transition-all">
       <div className="flex gap-10 w-full">
