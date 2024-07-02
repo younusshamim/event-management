@@ -4,6 +4,7 @@ import { isValidDate } from "./date";
 
 const getEventDateTimeData = (start, end) => {
   if (!isValidDate(start) || !isValidDate(end)) return null;
+  if (start.getTime() === end.getTime()) return null;
 
   const startDate = utcToLocal(start);
   const endDate = utcToLocal(end);
